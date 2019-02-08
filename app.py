@@ -1,13 +1,15 @@
 import operator
+import re
 
 
 def calculate_string(str_to_calculate, str_operator):
+    m = re.search(r'//\[(.*)]', str_to_calculate)
+    str_without_pattern = re.search(r'(?<=]).*', str_to_calculate)
     op = get_operator(str_operator)
-    numbers = str_to_calculate.split(",")
-    answer = int(numbers[0])
-    for num in numbers[1:]:
-        temp = op(answer, int(num))
-        answer = temp
+    numbers_list = str_without_pattern.group(0).split(str(m.group(1)))
+    answer = int(numbers_list[0])
+    for num in numbers_list[1:]:
+        answer = op(answer, int(num))
 
     return answer
 
