@@ -22,19 +22,20 @@ class TestOperatorStringConvert:
 
 class TestStringCalculator:
     def test_add_calculation(self):
-        assert calculate_string("1,2,3,4", "add") == 10
-        assert calculate_string("2,2,2,2,2,2", "ADD") == 12
+        assert calculate_string("//[**]1**2**3**4", "Add") == 10
+        assert calculate_string("//[##]1##2##3##4", "add") == 10
+        assert calculate_string("//[##]2##2##2##2##2##2", "ADD") == 12
 
     def test_subtract_calculation(self):
-        assert calculate_string("10,2,2,2", "subtract") == 4
+        assert calculate_string("//[,]10,2,2,2", "subtract") == 4
 
     def test_multiply_calculation(self):
-        assert calculate_string("2,2,2", "Multiply") == 8
-        assert calculate_string("1,1,1,1", "Multiply") == 1
-        assert calculate_string("5,5,5,5", "Multiply") == 625
+        assert calculate_string("//[-]2-2-2", "Multiply") == 8
+        assert calculate_string("//[%]1%1%1%1", "Multiply") == 1
+        assert calculate_string("//[@@]5@@5@@5@@5", "Multiply") == 625
 
     def test_divide_calculation(self):
-        assert calculate_string("100,2,2", "divide") == 25
+        assert calculate_string("//[,]100,2,2", "divide") == 25
 
-    def test_square_root_calculation(self):
-        assert calculate_string("","square_root") == 0
+    # def test_square_root_calculation(self):
+    #     assert calculate_string("","square_root") == 0
