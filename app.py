@@ -1,5 +1,6 @@
 import operator
 import re
+import math
 
 
 def calculate_string(str_to_calculate, str_operator):
@@ -8,8 +9,14 @@ def calculate_string(str_to_calculate, str_operator):
     op = get_operator(str_operator)
     numbers_list = str_without_pattern.group(0).split(str(m.group(1)))
     answer = int(numbers_list[0])
-    for num in numbers_list[1:]:
-        answer = op(answer, int(num))
+
+    if op is math.sqrt:
+        for num in numbers_list[1:]:
+            answer = operator.add(answer, int(num))
+        answer = op(answer)
+    else:
+        for num in numbers_list[1:]:
+            answer = op(answer, int(num))
 
     return answer
 
@@ -20,5 +27,5 @@ def get_operator(str_operator: str):
         'subtract': operator.sub,
         'multiply': operator.mul,
         'divide': operator.truediv,
-        'square_root': operator.pow
+        'square_root': math.sqrt
     }[str_operator.lower()]

@@ -1,3 +1,5 @@
+import math
+
 import pytest
 from app import get_operator, calculate_string
 import operator
@@ -17,7 +19,7 @@ class TestOperatorStringConvert:
         assert get_operator("divide") == operator.truediv
 
     def test_square_root_operator(self):
-        assert get_operator("square_root") == operator.pow
+        assert get_operator("square_root") == math.sqrt
 
 
 class TestStringCalculator:
@@ -37,5 +39,5 @@ class TestStringCalculator:
     def test_divide_calculation(self):
         assert calculate_string("//[,]100,2,2", "divide") == 25
 
-    # def test_square_root_calculation(self):
-    #     assert calculate_string("","square_root") == 0
+    def test_square_root_calculation(self):
+        assert calculate_string("//[,]10,12,3", "square_root") == 5
